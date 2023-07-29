@@ -99,3 +99,11 @@ a {
     color-scheme: dark;
   }
 }
+.parent-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.question-counter {
+  background-color: rgb(218, 218, 15);
+  padding: 16px;
+}

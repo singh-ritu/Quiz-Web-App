@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { question } from "./utils";
+import { Image } from "next/image";
+import { questions } from "./utils";
 
 export default function Home() {
   const [questionCounter, setQuestionCounter] = useState(1);
@@ -16,18 +18,25 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="parent-container">
       <div className="left-container">
-        <img src={"../assets/img1.jpg"}></img>
+        <img
+          src="/assets/img1.jpg"
+          width={500}
+          height={500}
+          alt="question"
+        ></img>
       </div>
       <div className="right-container">
-        <div
-          style={{
-            backgroundColor: "rebeccapurple",
-            padding: "16px ",
-          }}
-        >
+        <div className="question-counter">
           <h3>{"Question " + questionCounter + " / 5"}</h3>
+        </div>
+        <div>
+          {console.log(questions[questionCounter - 1])}
+          <h1>{questions[questionCounter - 1].question}</h1>
+          {questions[questionCounter - 1].options.map((option) => (
+            <h3>{option}</h3>
+          ))}
         </div>
         <div
           style={{
