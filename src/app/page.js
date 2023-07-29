@@ -1,14 +1,9 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
+
 import { useState } from "react";
+import { question } from "./utils";
 
 export default function Home() {
-  const styles = {
-    display: "flex",
-    flexDirection: "column",
-    float: "right",
-  };
   const [questionCounter, setQuestionCounter] = useState(1);
 
   const handleNextQuestion = () => {
@@ -16,40 +11,56 @@ export default function Home() {
     else alert("no more questions");
   };
 
+  const handleLastQuestion = () => {
+    if (questionCounter >= 2) setQuestionCounter(questionCounter - 1);
+  };
+
   return (
-    <div style={styles}>
-      <div
-        style={{
-          backgroundColor: "rebeccapurple",
-          padding: "16px",
-        }}
-      >
-        <h1>{"Question " + questionCounter + " / 5"}</h1>
+    <div>
+      <div className="left-container">
+        <img src={"../assets/img1.jpg"}></img>
       </div>
-      <div
-        style={{
-          display: "flex",
-          position: "fixed",
-          right: "100px",
-          bottom: "80px",
-        }}
-      >
-        {questionCounter > 1 && (
-          <button>
-            <h2> LAST QUESTION</h2>
-          </button>
-        )}
-        <button
+      <div className="right-container">
+        <div
           style={{
             backgroundColor: "rebeccapurple",
-            padding: "16px 32px",
-            borderRadius: "6px",
-            marginLeft: "30px",
+            padding: "16px ",
           }}
-          onClick={handleNextQuestion}
         >
-          <h2> {questionCounter === 5 ? "SUBMIT" : "NEXT QUESTION"} </h2>
-        </button>
+          <h3>{"Question " + questionCounter + " / 5"}</h3>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            position: "fixed",
+            right: "100px",
+            bottom: "80px",
+          }}
+        >
+          {questionCounter > 1 && (
+            <button
+              style={{
+                backgroundColor: "lightgrey",
+                padding: "16px 32px",
+                borderRadius: "6px",
+              }}
+              onClick={handleLastQuestion}
+            >
+              <h2> LAST QUESTION</h2>
+            </button>
+          )}
+          <button
+            style={{
+              backgroundColor: "rebeccapurple",
+              padding: "16px 32px",
+              borderRadius: "6px",
+              marginLeft: "30px",
+            }}
+            onClick={handleNextQuestion}
+          >
+            <h3> {questionCounter === 5 ? "SUBMIT" : "NEXT QUESTION"} </h3>
+          </button>
+        </div>
       </div>
     </div>
   );
