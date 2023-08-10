@@ -87,6 +87,7 @@ body {
 
 body {
   background-color: white;
+  color: black;
 }
 
 a {
@@ -103,7 +104,67 @@ a {
   display: grid;
   grid-template-columns: 60% 40%;
 }
-.question-counter {
+.question-tag {
   background-color: rgb(218, 218, 15);
   padding: 16px;
+  padding-left: 64px;
+  padding-right: 64px;
+  position: absolute;
+  right: 0;
+}
+.Quiz-Questions {
+  margin-top: 20%;
+  margin-right: 50%;
+}
+.button {
+  display: flex;
+  position: fixed;
+  right: 100px;
+  bottom: 80px;
+  margin-top: 50%;
+}
+.last-question-btn {
+  background-color: lightgrey;
+  padding: 16px 32px;
+  border-radius: 6px;
+  border: 1px solid white;
+}
+.next-question-btn {
+  background-color: rgb(237, 203, 28);
+  padding: 16px 32px;
+  border-radius: 6px;
+  margin-left: 30px;
+  border: 1px solid white;
+}
+.Ques {
+  margin-bottom: 10%;
+}
+.option {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  border: 2px solid white;
+  width: 60%;
+  padding: 10px 10px;
+  /* box-shadow: 0px 2px 21px 0px rgba(0, 0, 0, 0.03); */
+  cursor: pointer;
+}
+
+.stepper {
+  display: flex;
+  width: 400px;
+  position: absolute;
+  left: 60px;
+  bottom: 60px;
+}
+.stepbox {
+  width: 100%;
+  min-width: 50px;
+  height: 10px;
+  border-radius: 8px;
+  border: 1px dotted grey;
+  margin-right: 10px;
+}
+.bar {
+  background-color: rgb(237, 203, 28);
 }
