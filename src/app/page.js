@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QuizQs, question } from "./utils";
 import { Image } from "next/image";
 import { questions } from "./utils";
@@ -12,7 +12,14 @@ export default function Home() {
 
   const handleNextQuestion = () => {
     if (questionCounter < 5) setQuestionCounter(questionCounter + 1);
-    else alert("no more questions");
+    else {
+      const submittedAnswers = QuizQs.map((question, index) => {
+        if (question.answer === question.options[clickedOptions[index]]) {
+          return true;
+        } else return false;
+      });
+      console.log(submittedAnswers);
+    }
     setCurrentOption(-1);
   };
 
@@ -22,13 +29,15 @@ export default function Home() {
   const currentQuestion = QuizQs[questionCounter - 1];
 
   const handleOptions = (index) => {
-    console.log(index);
+    // console.log(index);
     const newvalues = [...clickedOptions];
     newvalues[questionCounter - 1] = index;
     setClickedOptions(newvalues);
-    console.log(clickedOptions);
     setCurrentOption(index);
   };
+  useEffect(() => {
+    console.log(clickedOptions);
+  }, [clickedOptions]);
   const selectedOptionStyle = {
     borderColor: "rgb(43, 211, 10) ",
     borderRadius: "4px",
@@ -46,9 +55,9 @@ export default function Home() {
         <div className="stepper ">
           {QuizQs.map((question, index) => (
             <div
-              className={
-                "stepbox" + " " + questionCounter - 1 === index ? "bar" : " "
-              }
+              className={`stepbox ${
+                questionCounter - 1 >= index ? "bar" : " "
+              }`}
             ></div>
           ))}
         </div>
