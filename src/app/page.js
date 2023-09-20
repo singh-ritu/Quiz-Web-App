@@ -1,18 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { QuizQs, question } from "./utils";
-import { Image } from "next/image";
-import { questions } from "./utils";
+import { QuizQs } from "./utils";
+import DailogBox from "./Components/DailogBox";
 
 export default function Home() {
   const [questionCounter, setQuestionCounter] = useState(1);
   const [currentOption, setCurrentOption] = useState(-1);
   const [clickedOptions, setClickedOptions] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleNextQuestion = () => {
     if (questionCounter < 5) setQuestionCounter(questionCounter + 1);
     else {
+      setIsSubmitted(true);
       const submittedAnswers = QuizQs.map((question, index) => {
         if (question.answer === question.options[clickedOptions[index]]) {
           return true;
@@ -88,6 +89,7 @@ export default function Home() {
             <h3> {questionCounter === 5 ? "SUBMIT" : "NEXT QUESTION"} </h3>
           </button>
         </div>
+        <DailogBox submittedValue={isSubmitted} />
       </div>
     </div>
   );
